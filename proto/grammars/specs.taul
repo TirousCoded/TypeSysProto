@@ -1,0 +1,26 @@
+
+
+lexer section:
+
+
+	NAME				: [a-zA-Z_][a-zA-Z0-9_]+ ;
+	
+	DOT					: '.' ;
+	#COMMA				: ',' ;
+
+	skip NEWLINE		: [\r\n] ;
+	skip WS				: [ \t]+ ;
+
+
+parser section:
+
+
+	Spec				: Expr ;
+
+	precedence Expr		: Expr DOT NAME
+						| PrimaryExpr
+						;
+	PrimaryExpr			: NameExpr
+						;
+	NameExpr			: NAME ;
+
